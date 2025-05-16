@@ -177,9 +177,9 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-Your Name - [@yourtwitter](https://twitter.com/yourtwitter) - youremail@example.com
+Mohan - mtm.kcs@gmail.com
 
-Project Link: [https://github.com/yourusername/task-tracker](https://github.com/yourusername/task-tracker)
+Project Link: https://github.com/mohan7401647399/Task_tracker
 ```
 
 ## How to Use This README
