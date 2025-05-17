@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import api from '../../utils/api';
 import Spinner from '../ui/Spinner';
 
-const TaskForm = ({ edit }) => {
+const TaskForm = ({ edit = false }) => {
   const { projectId, taskId } = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(edit);
@@ -14,25 +14,44 @@ const TaskForm = ({ edit }) => {
     description: '',
     status: 'Not Started',
   });
+  const [error, setError] = useState(null);
+
+  // Debugging logs
+  useEffect(() => {
+    console.log('Current route params:', { projectId, taskId });
+  }, [projectId, taskId]);
 
   useEffect(() => {
-    if (edit) {
-      const fetchTask = async () => {
-        try {
-          const res = await api.get(`/tasks/${taskId}`);
+    const fetchTask = async () => {
+      if (!taskId) {
+        setError('Task ID is missing');
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const res = await api.get(`/projects/${projectId}/tasks/${taskId}`);
+        console.log('API Response:', res.data); // Debug log
+        
+        if (res.data?.data) {
           setInitialValues({
             title: res.data.data.title,
             description: res.data.data.description || '',
             status: res.data.data.status,
           });
-          setLoading(false);
-        } catch (err) {
-          setLoading(false);
         }
-      };
+      } catch (err) {
+        console.error('Error fetching task:', err);
+        setError(err.response?.data?.error || 'Failed to load task');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (edit) {
       fetchTask();
     }
-  }, [edit, taskId]);
+  }, [edit, projectId, taskId]);
 
   const validationSchema = Yup.object({
     title: Yup.string().required('Title is required'),
@@ -42,19 +61,43 @@ const TaskForm = ({ edit }) => {
   const onSubmit = async (values, { setSubmitting }) => {
     try {
       if (edit) {
-        await api.put(`/tasks/${taskId}`, values);
+        if (!taskId) {
+          throw new Error('Task ID is required for editing');
+        }
+        await api.put(`/projects/${projectId}/tasks/${taskId}`, values);
       } else {
         await api.post(`/projects/${projectId}/tasks`, values);
       }
       navigate(`/projects/${projectId}`);
     } catch (err) {
+      console.error('Save error:', err);
+      setError(err.message || err.response?.data?.error || 'Failed to save task');
       setSubmitting(false);
     }
   };
 
-  if (loading) {
-    return <Spinner />;
-  }
+  if (loading) return <Spinner />;
+
+  if (error) return (
+    <div className="container mx-auto p-4">
+      <div className="bg-red-50 border-l-4 border-red-500 p-4">
+        <div className="flex">
+          <div className="flex-shrink-0">
+            {/* Error icon */}
+          </div>
+          <div className="ml-3">
+            <p className="text-sm text-red-700">{error}</p>
+            <button
+              onClick={() => navigate(`/projects/${projectId}`)}
+              className="mt-2 text-sm text-red-600 hover:text-red-500"
+            >
+              Back to project
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-md">

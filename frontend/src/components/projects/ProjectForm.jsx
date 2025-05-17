@@ -55,7 +55,7 @@ const ProjectForm = ({ edit }) => {
   return (
     <div className="container mx-auto p-4 max-w-md">
       <h1 className="text-2xl font-bold mb-6">
-        {edit ? 'Edit Project' : 'Create Project'}
+        {edit ? 'Edit Project' : 'Add Project'}
       </h1>
       
       <Formik

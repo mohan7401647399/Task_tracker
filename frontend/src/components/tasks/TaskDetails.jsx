@@ -5,35 +5,41 @@ import Spinner from '../ui/Spinner';
 import StatusBadge from '../ui/StatusBadge';
 
 const TaskDetails = () => {
-  const { id } = useParams();
+  const { projectId, taskId } = useParams();
   const navigate = useNavigate();
   const [task, setTask] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchTask = async () => {
       try {
-        const res = await api.get(`/tasks/${id}`);
+        const res = await api.get(`/projects/${projectId}/tasks/${taskId}`);
         setTask(res.data.data);
-        setLoading(false);
       } catch (err) {
+        setError(err.response?.data?.error || 'Failed to fetch task');
+      } finally {
         setLoading(false);
       }
     };
 
     fetchTask();
-  }, [id]);
+  }, [projectId, taskId]);
 
   const handleDelete = async () => {
-    try {
-      await api.delete(`/tasks/${id}`);
-      navigate(`/projects/${task.project}`);
-    } catch (err) {
-      console.error(err);
+    if (window.confirm('Are you sure you want to delete this task?')) {
+      try {
+        await api.delete(`/projects/${projectId}/tasks/${taskId}`);
+        navigate(`/projects/${projectId}`);
+      } catch (err) {
+        setError(err.response?.data?.error || 'Failed to delete task');
+      }
     }
   };
 
   if (loading) return <Spinner />;
+  if (error) return <div className="text-red-500 p-4">{error}</div>;
+  if (!task) return <div className="p-4">Task not found</div>;
 
   return (
     <div className="container mx-auto p-4">
@@ -42,7 +48,7 @@ const TaskDetails = () => {
           <h1 className="text-2xl font-bold">{task.title}</h1>
           <div className="flex space-x-2">
             <Link
-              to={`/tasks/${id}/edit`}
+              to={`/projects/${projectId}/tasks/new`}
               className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
             >
               Edit

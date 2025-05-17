@@ -62,6 +62,7 @@ exports.getTask = asyncHandler(async (req, res, next) => {
   });
 });
 
+
 // @desc    Create new task
 // @route   POST /api/projects/:projectId/tasks
 // @access  Private
@@ -153,7 +154,7 @@ exports.deleteTask = asyncHandler(async (req, res, next) => {
     );
   }
 
-  await task.remove();
+  await task.deleteOne();
 
   res.status(200).json({
     success: true,

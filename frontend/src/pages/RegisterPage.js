@@ -75,7 +75,7 @@ const RegisterPage = () => {
 
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/auth/register`,
+        `${process.env.REACT_APP_API_URL}/auth/register`,
         {
           name: formData.name,
           email: formData.email,

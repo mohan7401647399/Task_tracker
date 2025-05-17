@@ -12,6 +12,7 @@ import ProjectForm from './components/projects/ProjectForm';
 import ProjectDetails from './components/projects/ProjectDetails';
 import TaskForm from './components/tasks/TaskForm';
 import PrivateRoute from './components/routing/PrivateRoute';
+import TaskDetails from './components/tasks/TaskDetails';
 
 function App() {
   return (
@@ -39,8 +40,8 @@ function App() {
                   element={<TaskForm />} 
                 />
                 <Route 
-                  path="/projects/:projectId/tasks/:taskId/edit" 
-                  element={<TaskForm />} 
+                  path="/projects/:projectId/tasks/:taskId" 
+                  element={<TaskDetails />} 
                 />
               </Route>
 

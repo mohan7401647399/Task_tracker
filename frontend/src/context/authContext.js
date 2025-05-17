@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
       if (localStorage.token) {
         setAuthToken(localStorage.token);
         try {
-          const res = await axios.get('/api/auth/me');
+          const res = await axios.get('/auth/me');
           setUser(res.data.data);
           setIsAuthenticated(true);
         } catch (err) {
@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }) => {
   // Register user
   const register = async (formData) => {
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/register`, formData);
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/register`, formData);
       const { token } = res.data;
       localStorage.setItem('token', token);
       setAuthToken(token);
@@ -52,7 +52,7 @@ export const AuthProvider = ({ children }) => {
   // Login user
   const login = async (formData) => {
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/login`, formData);
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, formData);
       const { token } = res.data;
       localStorage.setItem('token', token);
       setAuthToken(token);

@@ -31,7 +31,9 @@ const ProjectList = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-6">
+        
         <h1 className="text-2xl font-bold">My Projects</h1>
+
         {projects.length < 4 && (
           <Link
             to="/projects/new"
