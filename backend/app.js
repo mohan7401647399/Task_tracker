@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const errorHandler = require('./middleware/error');
 const connectDB = require('./config/db');
 const bodyParser = require('body-parser');
+const path = require('path'); // Add this line
 
 // Load env vars
 require('dotenv').config();
@@ -45,6 +46,17 @@ if (process.env.NODE_ENV === 'development') {
 app.use('/api/auth', auth);
 app.use('/api/projects', projects);
 app.use('/api/projects/:projectId/tasks', tasks);
+
+// Serve static assets (frontend) in production
+if (process.env.NODE_ENV === 'production') {
+  // Set static folder
+  app.use(express.static(path.join(__dirname, '../frontend/build')));
+
+  // Handle React routing, return all requests to React app
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../frontend/build', 'index.html'));
+  });
+}
 
 // Error handler middleware
 app.use(errorHandler);
