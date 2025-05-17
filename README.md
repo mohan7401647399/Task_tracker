@@ -85,56 +85,6 @@ A full-stack task management application built with MongoDB, Express, React, and
    npm start
    ```
 
-## Project Structure
-
-```
-task-tracker/
-├── backend/
-│   ├── config/
-│   │   └── db.js            # Database connection
-│   ├── controllers/
-│   │   ├── authController.js # Auth logic
-│   │   ├── projectController.js
-│   │   └── taskController.js
-│   ├── middleware/
-│   │   ├── auth.js           # Authentication middleware
-│   │   └── error.js          # Error handling middleware
-│   ├── models/
-│   │   ├── User.js           # User model
-│   │   ├── Project.js
-│   │   └── Task.js
-│   ├── routes/
-│   │   ├── authRoutes.js
-│   │   ├── projectRoutes.js
-│   │   └── taskRoutes.js
-│   ├── utils/
-│   │   ├── errorResponse.js
-│   │   └── asyncHandler.js
-│   ├── .env                  # Environment variables
-│   ├── app.js                # Express app configuration
-│   └── server.js             # Server entry point
-│
-├── frontend/
-│   ├── public/
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── auth/         # Auth components
-│   │   │   ├── layout/       # Layout components
-│   │   │   ├── projects/     # Project components
-│   │   │   ├── tasks/        # Task components
-│   │   │   └── ui/           # UI components
-│   │   ├── context/          # React context
-│   │   ├── pages/            # Page components
-│   │   ├── utils/            # Utility functions
-│   │   ├── App.js            # Main App component
-│   │   └── index.js          # React entry point
-│   ├── .env                  # Frontend environment variables
-│   └── package.json
-│
-├── .gitignore
-└── README.md
-```
-
 ## API Endpoints
 
 ### Authentication
