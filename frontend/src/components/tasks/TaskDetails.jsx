@@ -48,7 +48,7 @@ const TaskDetails = () => {
           <h1 className="text-2xl font-bold">{task.title}</h1>
           <div className="flex space-x-2">
             <Link
-              to={`/projects/${projectId}/tasks/new`}
+              to={`/projects/${projectId}/tasks/${taskId}/edit`}
               className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
             >
               Edit

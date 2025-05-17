@@ -1,14 +1,12 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../utils/api';
 import ProjectItem from './ProjectItem';
 import Spinner from '../ui/Spinner';
-import AuthContext from '../../context/authContext';
 
 const ProjectList = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -43,7 +41,7 @@ const ProjectList = () => {
           </Link>
         )}
       </div>
-      
+    
       {projects.length === 0 ? (
         <div className="text-center py-12">
           <p className="text-gray-600 mb-4">You don't have any projects yet.</p>

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from '../../context/authContext';
 
@@ -21,7 +21,7 @@ const Navbar = () => {
         <div className="flex items-center space-x-4">
           {isAuthenticated ? (
             <>
-              <span className="hidden sm:inline">Hello, {user?.name}</span>
+              <span className="hidden sm:inline">Hello, {user?.name || 'User'}</span>
               <Link to="/dashboard" className="hover:underline">
                 Dashboard
               </Link>

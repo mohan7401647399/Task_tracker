@@ -56,8 +56,8 @@ exports.login = asyncHandler(async (req, res, next) => {
 // @route   GET /api/auth/me
 // @access  Private
 exports.getMe = asyncHandler(async (req, res, next) => {
-  const user = await User.findById(req.user.userId).select('-password');
-  
+  const user = await User.findById(req.user.id).select('-password');
+
   res.status(200).json({
     success: true,
     data: user,

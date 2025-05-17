@@ -4,7 +4,7 @@ import StatusBadge from '../ui/StatusBadge';
 const TaskItem = ({ task }) => {
 
   const { id } = useParams();
-
+  
   return (
     <div className="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition duration-200">
       <div className="flex justify-between items-start">

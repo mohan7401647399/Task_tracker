@@ -52,65 +52,65 @@ const ProjectForm = ({ edit }) => {
 
   if (loading) return <Spinner />;
 
-  return (
-    <div className="container mx-auto p-4 max-w-md">
-      <h1 className="text-2xl font-bold mb-6">
-        {edit ? 'Edit Project' : 'Add Project'}
-      </h1>
-      
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={onSubmit}
-        enableReinitialize
-      >
-        {({ isSubmitting }) => (
-          <Form className="space-y-4">
-            <div>
-              <label htmlFor="title" className="block text-sm font-medium text-gray-700">
-                Title
-              </label>
-              <Field
-                name="title"
-                type="text"
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border"
-              />
-              <ErrorMessage name="title" component="div" className="text-red-500 text-sm mt-1" />
-            </div>
+    return (
+      <div className="container mx-auto p-4 max-w-md">
+        <h1 className="text-2xl font-bold mb-6">
+          { edit ? 'Edit Project' : 'Add Project' }
+        </h1>
 
-            <div>
-              <label htmlFor="description" className="block text-sm font-medium text-gray-700">
-                Description
-              </label>
-              <Field
-                as="textarea"
-                name="description"
-                rows="4"
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border"
-              />
-            </div>
+        <Formik
+          initialValues={ initialValues }
+          validationSchema={ validationSchema }
+          onSubmit={ onSubmit }
+          enableReinitialize
+        >
+          { ({ isSubmitting }) => (
+            <Form className="space-y-4">
+              <div>
+                <label htmlFor="title" className="block text-sm font-medium text-gray-700">
+                  Title
+                </label>
+                <Field
+                  name="title"
+                  type="text"
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border"
+                />
+                <ErrorMessage name="title" component="div" className="text-red-500 text-sm mt-1" />
+              </div>
 
-            <div className="flex justify-end space-x-3">
-              <button
-                type="button"
-                onClick={() => navigate('/projects')}
-                className="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400"
-              >
-                Cancel
-              </button>
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-              >
-                {isSubmitting ? 'Saving...' : 'Save'}
-              </button>
-            </div>
-          </Form>
-        )}
-      </Formik>
-    </div>
-  );
+              <div>
+                <label htmlFor="description" className="block text-sm font-medium text-gray-700">
+                  Description
+                </label>
+                <Field
+                  as="textarea"
+                  name="description"
+                  rows="4"
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border"
+                />
+              </div>
+
+              <div className="flex justify-end space-x-3">
+                <button
+                  type="button"
+                  onClick={ () => navigate('/projects') }
+                  className="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={ isSubmitting }
+                  className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                >
+                  { isSubmitting ? 'Saving...' : 'Save' }
+                </button>
+              </div>
+            </Form>
+          ) }
+        </Formik>
+      </div>
+    );
 };
 
 export default ProjectForm;

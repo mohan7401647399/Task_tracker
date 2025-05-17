@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -16,11 +16,6 @@ const TaskForm = ({ edit = false }) => {
   });
   const [error, setError] = useState(null);
 
-  // Debugging logs
-  useEffect(() => {
-    console.log('Current route params:', { projectId, taskId });
-  }, [projectId, taskId]);
-
   useEffect(() => {
     const fetchTask = async () => {
       if (!taskId) {
@@ -31,8 +26,6 @@ const TaskForm = ({ edit = false }) => {
 
       try {
         const res = await api.get(`/projects/${projectId}/tasks/${taskId}`);
-        console.log('API Response:', res.data); // Debug log
-        
         if (res.data?.data) {
           setInitialValues({
             title: res.data.data.title,
