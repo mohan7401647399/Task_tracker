@@ -87,10 +87,9 @@ const RegisterPage = () => {
       if (response.data.token) {
         localStorage.setItem('token', response.data.token);
 
-        login(response.data.token);
+         await login(response.data.token);
 
-        // Immediate navigation after successful registration
-        navigate('/dashboard');
+        navigate('/dashboard', { replace: true });
       } else {
         throw new Error('No token received');
       }

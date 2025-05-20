@@ -4,7 +4,6 @@ import setAuthToken from '../utils/setAuthToken';
 import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext();
-
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -22,6 +21,7 @@ export const AuthProvider = ({ children }) => {
         setIsAuthenticated(true);
         setError(null);
       } catch (err) {
+        console.error('Error loading user:', err.response?.data);
         clearAuth();
         setError(err.response?.data?.message || 'Failed to load user');
       }
@@ -54,6 +54,7 @@ export const AuthProvider = ({ children }) => {
       navigate('/dashboard');
       return { success: true };
     } catch (err) {
+      console.error('Registration error:', err);
       setError(err.response?.data?.message || 'Registration failed');
       return { success: false, error: err.response?.data };
     } finally {
@@ -86,20 +87,20 @@ export const AuthProvider = ({ children }) => {
     navigate('/login');
   };
 
-  const value = { 
-    user, 
-    isAuthenticated, 
-    loading, 
+  const value = {
+    user,
+    isAuthenticated,
+    loading,
     error,
-    register, 
-    login, 
+    register,
+    login,
     logout,
     loadUser
   };
 
   return (
-    <AuthContext.Provider value={value}>
-      {children}
+    <AuthContext.Provider value={ value }>
+      { children }
     </AuthContext.Provider>
   );
 };
