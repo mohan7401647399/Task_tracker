@@ -9,8 +9,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 // Load env vars
-// require('dotenv').config();
-require('dotenv').config({ path: path.join(__dirname, '../.env') }); // Path to root .env
+require('dotenv').config({ path: path.join(__dirname, '../.env') });
 
 
 // Route files
@@ -50,7 +49,6 @@ app.use('/api/projects/:projectId/tasks', tasks);
 // Serve static assets (frontend) in production
 if (process.env.NODE_ENV === 'production') {
   // Set static folder
-  // app.use(express.static(path.join(__dirname, '/frontend/build')));
   app.use(express.static(path.join(__dirname, '../frontend/build')));
 
   // Handle React routing, return all requests to React app

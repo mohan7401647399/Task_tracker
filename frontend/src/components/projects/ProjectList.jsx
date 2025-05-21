@@ -11,7 +11,7 @@ const ProjectList = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const res = await api.get(`${process.env.REACT_APP_API_URL}/projects`);
+        const res = await api.get('/projects');
         setProjects(res.data.data);
         setLoading(false);
       } catch (err) {
