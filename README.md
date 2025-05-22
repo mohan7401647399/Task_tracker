@@ -4,6 +4,8 @@
 
 A full-stack task management application built with MongoDB, Express, React, and Node.js (MERN stack) with JWT authentication.
 
+## Deplyed URL - https://task-tracker-kci7.onrender.com/
+
 ## Features
 
 - User authentication (register, login, logout)
@@ -121,35 +123,9 @@ A full-stack task management application built with MongoDB, Express, React, and
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
 ## Contact
 
 Mohan - mtm.kcs@gmail.com
 
 Project Link: https://github.com/mohan7401647399/Task_tracker
 ```
-
-## How to Use This README
-
-1. Replace placeholder values (like `yourusername`, `your_mongodb_connection_string`, etc.) with your actual information
-2. Add real screenshots to the `screenshots/` directory and update the image paths
-3. Customize the features, installation steps, and other sections as needed
-4. Add your own license if not using MIT
-5. Include any additional sections that might be relevant to your project
-
-The README provides:
-- Clear installation instructions
-- Project structure overview
-- API documentation
-- Technology stack information
-- Contribution guidelines
-- Contact information
-
-You can enhance it further by adding:
-- Deployment instructions
-- Testing guidelines
-- Environment variable explanations
-- Demo link (if deployed)
