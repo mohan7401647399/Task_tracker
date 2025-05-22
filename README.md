@@ -128,4 +128,3 @@ A full-stack task management application built with MongoDB, Express, React, and
 Mohan - mtm.kcs@gmail.com
 
 Project Link: https://github.com/mohan7401647399/Task_tracker
-```
